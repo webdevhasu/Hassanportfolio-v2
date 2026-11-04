@@ -369,14 +369,14 @@ function Hero() {
               </div>
             </div>
 
-            {/* Floating Badge 2: Bottom-Left (50+ Projects Delivered) */}
+            {/* Floating Badge 2: Bottom-Left (Fast Turnaround) */}
             <div className="animate-float-delayed absolute bottom-8 -left-2 sm:-left-6 z-20 flex items-center gap-3 rounded-2xl border border-border/80 bg-background/95 px-3.5 py-2.5 shadow-card backdrop-blur-md transition-transform hover:scale-105">
               <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-primary/15 text-primary">
                 <CheckCircle2 className="size-5" />
               </div>
               <div className="text-left">
-                <p className="text-xs font-bold tracking-tight text-foreground">50+ Projects</p>
-                <p className="text-[11px] font-medium text-muted-foreground">Successfully Delivered</p>
+                <p className="text-xs font-bold tracking-tight text-foreground">Fast Turnaround</p>
+                <p className="text-[11px] font-medium text-muted-foreground">On-Time &amp; High Quality</p>
               </div>
             </div>
 
