@@ -207,12 +207,61 @@ const REVIEWS = [
   },
 ];
 
-const PRICING = [
-  { service: "Static / Landing Page", price: "Rs 5,000 – 8,000", note: "1–3 pages, fast delivery" },
-  { service: "Business Website", price: "Rs 15,000 – 25,000", note: "Multi-page, contact forms" },
-  { service: "Ecommerce / Full Stack", price: "Rs 30,000+", note: "Store, payments, dashboards" },
-  { service: "Mobile App", price: "Custom quote", note: "Android & iOS" },
+
+const PRICING_PLANS = [
+  {
+    name: "Landing Page / Starter",
+    badge: "Quick 2–3 Days",
+    price: "Rs 5,000 – 8,000",
+    period: "one-time",
+    description: "Ideal for portfolios, single-product campaigns, and fast business launches.",
+    features: [
+      "1–3 Custom Modern Pages",
+      "Mobile & Tablet Responsive",
+      "WhatsApp & Direct Contact Form",
+      "Ultra-Fast Loading Speed",
+      "Free Deployment & Setup",
+      "100% Payment After Work",
+    ],
+    popular: false,
+    whatsappMsg: "Hi Hassan! I'm interested in the Landing Page package.",
+  },
+  {
+    name: "Business Website",
+    badge: "Most Popular",
+    price: "Rs 15,000 – 25,000",
+    period: "one-time",
+    description: "Complete professional web presence to build trust and win customers.",
+    features: [
+      "4–8 Complete Custom Pages",
+      "Modern UI/UX & Brand Design",
+      "Google Map & Local SEO Setup",
+      "Lead Capture & Live WhatsApp Chat",
+      "Domain & Hosting Configuration",
+      "15 Days Free Post-Launch Support",
+    ],
+    popular: true,
+    whatsappMsg: "Hi Hassan! I'm interested in the Business Website package.",
+  },
+  {
+    name: "Ecommerce Store",
+    badge: "Full Solution",
+    price: "Rs 30,000+",
+    period: "starting from",
+    description: "Sell products online with payment gateways, order tracking, and inventory.",
+    features: [
+      "Unlimited Products & Categories",
+      "Payment Gateways (COD, Bank, Online)",
+      "Admin Dashboard & Order Management",
+      "Speed & Mobile Commerce Optimized",
+      "20% Half Work • 80% On Completion",
+      "30 Days Free Priority Support",
+    ],
+    popular: false,
+    whatsappMsg: "Hi Hassan! I'm interested in the Ecommerce / Full Stack package.",
+  },
 ];
+
 
 function Reveal({
   children,
@@ -627,49 +676,121 @@ function Reviews() {
 function Pricing() {
   return (
     <section id="pricing" className="border-t border-border bg-surface py-20 sm:py-28">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="Pricing"
           title="Simple, Honest Pricing"
           subtitle="Clear rates with no hidden costs. Every project gets a fixed quote before work starts."
         />
-        <Reveal className="mt-14">
-          <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-card">
-            {PRICING.map((row, i) => (
+
+        {/* Modern 3-Column Pricing Cards */}
+        <div className="mt-14 grid gap-8 lg:grid-cols-3 items-stretch">
+          {PRICING_PLANS.map((plan, i) => (
+            <Reveal key={plan.name} delay={i * 100} className="flex">
               <div
-                key={row.service}
-                className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-5 sm:grid-cols-[minmax(0,1fr)_auto_auto] sm:px-8 ${
-                  i > 0 ? "border-t border-border" : ""
+                className={`relative flex w-full flex-col justify-between rounded-3xl border p-7 sm:p-8 transition-all duration-300 hover:-translate-y-1 ${
+                  plan.popular
+                    ? "border-primary bg-card shadow-xl ring-2 ring-primary/20"
+                    : "border-border bg-card shadow-card hover:border-primary/40"
                 }`}
               >
-                <div className="min-w-0">
-                  <p className="truncate font-display text-base font-semibold text-foreground sm:text-lg">
-                    {row.service}
+                {plan.popular ? (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-bold uppercase tracking-wider text-primary-foreground shadow-md">
+                    ★ Most Popular
+                  </div>
+                ) : null}
+
+                <div>
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="font-display text-xl font-bold text-foreground">
+                      {plan.name}
+                    </h3>
+                    {!plan.popular && plan.badge ? (
+                      <span className="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-semibold text-muted-foreground">
+                        {plan.badge}
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                    {plan.description}
                   </p>
-                  <p className="text-xs text-muted-foreground sm:hidden">{row.note}</p>
+
+                  <div className="mt-6 flex items-baseline gap-1.5 border-b border-border pb-6">
+                    <span className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+                      {plan.price}
+                    </span>
+                    <span className="text-xs text-muted-foreground">({plan.period})</span>
+                  </div>
+
+                  <ul className="mt-6 space-y-3">
+                    {plan.features.map((feat) => (
+                      <li key={feat} className="flex items-start gap-2.5 text-sm text-foreground/90">
+                        <span className="grid size-5 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                          <Check className="size-3.5" />
+                        </span>
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <p className="hidden text-sm text-muted-foreground sm:block">{row.note}</p>
-                <p className="whitespace-nowrap text-right font-display text-base font-bold text-primary sm:text-lg">
-                  {row.price}
+
+                <div className="mt-8 pt-4">
+                  <a
+                    href={`https://wa.me/923474054450?text=${encodeURIComponent(plan.whatsappMsg)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`inline-flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold transition-all ${
+                      plan.popular
+                        ? "bg-primary text-primary-foreground shadow-glow hover:bg-primary/90"
+                        : "border border-border bg-secondary/50 text-foreground hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                    }`}
+                  >
+                    <MessageCircle className="size-4" />
+                    Get Started
+                  </a>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Mobile App & Custom Solution Banner */}
+        <Reveal delay={300} className="mt-8">
+          <div className="flex flex-col items-center justify-between gap-6 rounded-2xl border border-border bg-card p-6 sm:flex-row sm:p-8 shadow-card">
+            <div className="flex items-center gap-4">
+              <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-primary/10 text-primary">
+                <Smartphone className="size-6" />
+              </span>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h4 className="font-display text-lg font-bold text-foreground">
+                    Cross-Platform Mobile App &amp; Web Systems
+                  </h4>
+                  <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                    Custom Quote
+                  </span>
+                </div>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Custom iOS &amp; Android apps, client dashboards, and automated web apps built to scale.
                 </p>
               </div>
-            ))}
-          </div>
-          <p className="mt-6 text-center text-sm text-muted-foreground">
-            Need something different?{" "}
+            </div>
             <a
-              href={WHATSAPP_URL}
+              href={`https://wa.me/923474054450?text=${encodeURIComponent("Hi Hassan! I'd like to discuss a custom Mobile App or Web App project.")}`}
               target="_blank"
               rel="noreferrer"
-              className="font-semibold text-primary underline-offset-4 hover:underline"
+              className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-border px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
             >
-              Message me on WhatsApp
-            </a>{" "}
-            for a custom quote.
-          </p>
+              <MessageCircle className="size-4" />
+              Discuss Custom Project
+            </a>
+          </div>
+        </Reveal>
 
-          {/* Client-First Payment Policy */}
-          <div className="mt-10 rounded-2xl border border-primary/20 bg-primary/5 p-6 sm:p-8 backdrop-blur-sm">
+        {/* Client-First Payment Policy */}
+        <Reveal delay={400} className="mt-8">
+          <div className="rounded-3xl border border-primary/20 bg-primary/5 p-6 sm:p-8 backdrop-blur-sm">
             <div className="flex items-center gap-3">
               <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary text-primary-foreground shadow-sm">
                 <ShieldCheck className="size-5" />
@@ -685,11 +806,11 @@ function Pricing() {
             </div>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-xl border border-border/80 bg-card p-4">
-                <span className="inline-flex items-center gap-1.5 rounded-md bg-emerald-500/10 px-2 py-0.5 text-xs font-semibold text-emerald-600">
+              <div className="rounded-2xl border border-border/80 bg-card p-5">
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-600">
                   <Check className="size-3.5" /> 100% After Completion
                 </span>
-                <p className="mt-2 text-sm font-bold text-foreground">
+                <p className="mt-2.5 text-sm font-bold text-foreground">
                   Landing Pages &amp; Simple Websites
                 </p>
                 <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
@@ -697,11 +818,11 @@ function Pricing() {
                 </p>
               </div>
 
-              <div className="rounded-xl border border-border/80 bg-card p-4">
-                <span className="inline-flex items-center gap-1.5 rounded-md bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">
+              <div className="rounded-2xl border border-border/80 bg-card p-5">
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary">
                   <Clock className="size-3.5" /> 20% Half Work • 80% On Completion
                 </span>
-                <p className="mt-2 text-sm font-bold text-foreground">
+                <p className="mt-2.5 text-sm font-bold text-foreground">
                   Custom &amp; Full E-Commerce Stores
                 </p>
                 <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
@@ -711,13 +832,13 @@ function Pricing() {
             </div>
 
             {/* Payment methods */}
-            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-primary/10 pt-4 text-xs text-muted-foreground">
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-primary/10 pt-4 text-xs text-muted-foreground">
               <span className="font-semibold text-foreground">Supported Payment Methods:</span>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-md border border-border bg-card px-2.5 py-1 font-medium">JazzCash</span>
-                <span className="rounded-md border border-border bg-card px-2.5 py-1 font-medium">EasyPaisa</span>
-                <span className="rounded-md border border-border bg-card px-2.5 py-1 font-medium">Raast / Bank Transfer</span>
-                <span className="rounded-md border border-border bg-card px-2.5 py-1 font-medium">Wise / International</span>
+                <span className="rounded-lg border border-border bg-card px-3 py-1 font-medium shadow-sm">JazzCash</span>
+                <span className="rounded-lg border border-border bg-card px-3 py-1 font-medium shadow-sm">EasyPaisa</span>
+                <span className="rounded-lg border border-border bg-card px-3 py-1 font-medium shadow-sm">Raast / Bank Transfer</span>
+                <span className="rounded-lg border border-border bg-card px-3 py-1 font-medium shadow-sm">Wise / International</span>
               </div>
             </div>
           </div>
