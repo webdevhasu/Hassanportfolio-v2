@@ -1,4 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   ArrowUpRight,
@@ -84,6 +90,37 @@ const NAV_LINKS = [
   { label: "Reviews", href: "#reviews" },
   { label: "Pricing", href: "#pricing" },
   { label: "Contact", href: "#contact" },
+];
+
+
+const TECH_STACK = [
+  { name: "React", category: "Frontend" },
+  { name: "Next.js", category: "Full Stack" },
+  { name: "TypeScript", category: "Language" },
+  { name: "Tailwind CSS", category: "Design" },
+  { name: "Node.js", category: "Backend" },
+  { name: "PostgreSQL", category: "Database" },
+  { name: "Shopify", category: "Ecommerce" },
+  { name: "WordPress", category: "CMS" },
+];
+
+const FAQS = [
+  {
+    q: "Payment ka kya tareeqa aur policy hai?",
+    a: "Landing pages, portfolio aur simple websites ke liye 100% payment kaam mukammal dekhne aur pasand aane ke baad hoti hai — client ke liye zero risk. Custom ya large projects (jin mein custom domain aur hosting ka kharcha shamil ho) ke liye sirf 20% payment aadhi website deliver hone ke baad li jati hai, aur baqi 80% final delivery par. Payment aap JazzCash, EasyPaisa, Bank Transfer (Raast) ya Wise ke zariye kar sakte hain.",
+  },
+  {
+    q: "Website banne mein kitna time lagta hai?",
+    a: "Landing pages aur simple 1–3 page websites aam tor par 2 se 4 din mein mukammal ho jati hain. Standard multi-page business websites 5 se 7 din mein, aur full ecommerce stores ya web apps 10 se 14 din mein deliver hoti hain.",
+  },
+  {
+    q: "Kya aap Domain aur Hosting ka setup bhi karke denge?",
+    a: "Jee bilkul! Agar aapke paas domain aur hosting pehle se nahi hai, toh domain purchase se lekar DNS setup, SSL security certificate, aur website live karne tak ka sara setup hum handle karte hain.",
+  },
+  {
+    q: "Website live hone ke baad support ya changes milenge?",
+    a: "Har project ke sath free post-launch support shamil hai. Website live hone ke baad agar aapko koi text update karwana ho, image badalni ho, ya koi chota fix chahiye ho, toh baghair kisi extra charges ke hum foran kar dete hain.",
+  },
 ];
 
 const SERVICES = [
@@ -431,6 +468,31 @@ function Hero() {
   );
 }
 
+
+function TechStack() {
+  return (
+    <section className="border-y border-border bg-surface/50 py-10">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+          Modern Technologies &amp; Frameworks I Build With
+        </p>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+          {TECH_STACK.map((tech) => (
+            <div
+              key={tech.name}
+              className="flex items-center gap-2 rounded-xl border border-border/80 bg-card px-3.5 py-2 shadow-sm transition-transform hover:-translate-y-0.5 hover:border-primary/40"
+            >
+              <span className="size-2 rounded-full bg-primary" />
+              <span className="text-sm font-semibold text-foreground">{tech.name}</span>
+              <span className="text-[11px] text-muted-foreground">({tech.category})</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Services() {
   return (
     <section id="services" className="border-t border-border py-20 sm:py-28">
@@ -602,6 +664,60 @@ function Pricing() {
             </a>{" "}
             for a custom quote.
           </p>
+
+          {/* Client-First Payment Policy */}
+          <div className="mt-10 rounded-2xl border border-primary/20 bg-primary/5 p-6 sm:p-8 backdrop-blur-sm">
+            <div className="flex items-center gap-3">
+              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary text-primary-foreground shadow-sm">
+                <ShieldCheck className="size-5" />
+              </span>
+              <div>
+                <h4 className="font-display text-lg font-bold text-foreground">
+                  Zero-Risk Client Payment Policy
+                </h4>
+                <p className="text-xs text-muted-foreground">
+                  Fair, transparent terms designed for your peace of mind
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-xl border border-border/80 bg-card p-4">
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-emerald-500/10 px-2 py-0.5 text-xs font-semibold text-emerald-600">
+                  <Check className="size-3.5" /> 100% After Completion
+                </span>
+                <p className="mt-2 text-sm font-bold text-foreground">
+                  Landing Pages &amp; Simple Websites
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                  Kaam mukammal dekhne aur pasand aane ke baad payment karein. Koi advance nahi.
+                </p>
+              </div>
+
+              <div className="rounded-xl border border-border/80 bg-card p-4">
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">
+                  <Clock className="size-3.5" /> 20% After 50% Work
+                </span>
+                <p className="mt-2 text-sm font-bold text-foreground">
+                  Custom &amp; Full E-Commerce Stores
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                  Sirf custom domain aur setup expenses ke liye 20% aadhi website dekhne ke baad, baqi 80% final delivery par.
+                </p>
+              </div>
+            </div>
+
+            {/* Payment methods */}
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-primary/10 pt-4 text-xs text-muted-foreground">
+              <span className="font-semibold text-foreground">Supported Payment Methods:</span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-md border border-border bg-card px-2.5 py-1 font-medium">JazzCash</span>
+                <span className="rounded-md border border-border bg-card px-2.5 py-1 font-medium">EasyPaisa</span>
+                <span className="rounded-md border border-border bg-card px-2.5 py-1 font-medium">Raast / Bank Transfer</span>
+                <span className="rounded-md border border-border bg-card px-2.5 py-1 font-medium">Wise / International</span>
+              </div>
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>
@@ -635,6 +751,58 @@ function Contact() {
         <p className="mt-4 text-sm text-muted-foreground">Fast replies — usually within hours</p>
       </Reveal>
     </section>
+  );
+}
+
+
+function FAQ() {
+  return (
+    <section id="faq" className="border-t border-border py-20 sm:py-28">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+        <SectionHeading
+          eyebrow="FAQ"
+          title="Frequently Asked Questions"
+          subtitle="Answers to common questions about payment, timelines, and how we work together."
+        />
+        <Reveal className="mt-12">
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {FAQS.map((item, idx) => (
+              <AccordionItem
+                key={idx}
+                value={`item-${idx}`}
+                className="rounded-2xl border border-border bg-card px-6 py-1 shadow-card"
+              >
+                <AccordionTrigger className="text-left font-display text-base font-semibold text-foreground hover:no-underline hover:text-primary">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm leading-relaxed text-muted-foreground pt-1 pb-4">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function FloatingWhatsApp() {
+  return (
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Chat with Hassan Wali on WhatsApp"
+      className="group fixed bottom-5 right-5 z-50 flex items-center gap-2.5 rounded-full bg-emerald-500 py-3 px-4 text-white shadow-xl transition-all duration-300 hover:scale-105 hover:bg-emerald-600 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2"
+    >
+      <span className="relative flex size-2.5">
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+        <span className="relative inline-flex size-2.5 rounded-full bg-white" />
+      </span>
+      <MessageCircle className="size-5 shrink-0" />
+      <span className="font-semibold text-xs tracking-wide">Chat on WhatsApp</span>
+    </a>
   );
 }
 
@@ -691,13 +859,16 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
+        <TechStack />
         <Services />
         <Projects />
         <Reviews />
         <Pricing />
+        <FAQ />
         <Contact />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }
