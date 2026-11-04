@@ -65,6 +65,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "profile" },
       { property: "og:locale", content: "en_PK" },
       { property: "og:site_name", content: "Hassan Wali Portfolio" },
+      { property: "og:url", content: "https://webdevhassan.vercel.app/" },
       // Twitter Card
       { name: "twitter:card", content: "summary_large_image" },
       {
