@@ -9,17 +9,20 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   ArrowUpRight,
   Building2,
+  Check,
+  CheckCircle2,
+  Clock,
   Code2,
   Layers,
   Layout,
+  Menu,
   MessageCircle,
+  ShieldCheck,
   ShoppingCart,
   Smartphone,
-  Star,
-  CheckCircle2,
   Sparkles,
+  Star,
   UserRound,
-  Menu,
   X,
 } from "lucide-react";
 
