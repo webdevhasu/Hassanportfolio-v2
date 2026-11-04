@@ -506,6 +506,10 @@ function Hero() {
                 alt="Hassan Wali, full stack web developer"
                 className="relative z-10 mx-auto block max-h-[460px] w-full object-contain drop-shadow-2xl [mask-image:linear-gradient(to_bottom,black_75%,transparent_98%)]"
                 loading="eager"
+                fetchPriority="high"
+                width="460"
+                height="460"
+                decoding="async"
               />
 
               {/* Seamless gradient overlay to smoothly blend the bottom cut */}
@@ -529,11 +533,11 @@ function TechStack() {
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
           Modern Technologies &amp; Frameworks I Build With
         </p>
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+        <div className="mt-6 grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
           {TECH_STACK.map((tech) => (
             <div
               key={tech.name}
-              className="flex items-center gap-2 rounded-xl border border-border/80 bg-card px-3.5 py-2 shadow-sm transition-transform hover:-translate-y-0.5 hover:border-primary/40"
+              className="flex items-center justify-center gap-2 rounded-xl border border-border/80 bg-card px-3.5 py-2 shadow-sm transition-transform hover:-translate-y-0.5 hover:border-primary/40"
             >
               <span className="size-2 rounded-full bg-primary" />
               <span className="text-sm font-semibold text-foreground">{tech.name}</span>
