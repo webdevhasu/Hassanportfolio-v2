@@ -26,10 +26,10 @@ import {
   X,
 } from "lucide-react";
 
-import hassanHero from "@/assets/hassanhero.png";
-import projectKamran from "@/assets/project-kamran-cloth-house.jpg";
-import projectBannu from "@/assets/project-bannu-masala.jpg";
-import projectNorthlinks from "@/assets/project-northlinks-broadband.jpg";
+import hassanHero from "@/assets/hassanhero.webp";
+import projectKamran from "@/assets/project-kamran-cloth-house.webp";
+import projectBannu from "@/assets/project-bannu-masala.webp";
+import projectNorthlinks from "@/assets/project-northlinks-broadband.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -213,7 +213,7 @@ const PRICING_PLANS = [
   {
     name: "Landing Page",
     badge: "Quick 2–3 Days",
-    price: "Rs 5,000 – 8,000",
+    price: "Rs 4,999 – 7,999",
     period: "one-time",
     description: "Ideal for portfolios, single-product campaigns, and fast business launches.",
     features: [
@@ -230,7 +230,7 @@ const PRICING_PLANS = [
   {
     name: "Business Website",
     badge: "Most Popular",
-    price: "Rs 15,000 – 25,000",
+    price: "Rs 14,999 – 24,999",
     period: "one-time",
     description: "Complete professional web presence to build trust and win customers.",
     features: [
@@ -247,7 +247,7 @@ const PRICING_PLANS = [
   {
     name: "Ecommerce Store",
     badge: "Full Solution",
-    price: "Rs 30,000+",
+    price: "Rs 29,999+",
     period: "starting from",
     description: "Sell products online with payment gateways, order tracking, and inventory.",
     features: [
