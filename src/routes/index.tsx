@@ -300,6 +300,38 @@ function Reveal({
   );
 }
 
+// Hook: defer mounting heavy sections until they near the viewport
+function useLazyMount(rootMargin = "200px") {
+  const ref = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    if (mounted) return;
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMounted(true);
+          obs.disconnect();
+        }
+      },
+      { rootMargin }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [mounted, rootMargin]);
+  return { ref, mounted };
+}
+
+function LazySection({ children, minHeight = "400px" }: { children: ReactNode; minHeight?: string }) {
+  const { ref, mounted } = useLazyMount();
+  return (
+    <div ref={ref} style={{ minHeight: mounted ? undefined : minHeight }}>
+      {mounted ? children : null}
+    </div>
+  );
+}
+
 function SectionHeading({
   eyebrow,
   title,
@@ -994,10 +1026,10 @@ function Index() {
         <TechStack />
         <Services />
         <Projects />
-        <Reviews />
-        <Pricing />
-        <FAQ />
-        <Contact />
+        <LazySection minHeight="600px"><Reviews /></LazySection>
+        <LazySection minHeight="800px"><Pricing /></LazySection>
+        <LazySection minHeight="400px"><FAQ /></LazySection>
+        <LazySection minHeight="400px"><Contact /></LazySection>
       </main>
       <Footer />
       <FloatingWhatsApp />
