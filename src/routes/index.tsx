@@ -10,6 +10,8 @@ import {
   ShoppingCart,
   Smartphone,
   Star,
+  CheckCircle2,
+  Sparkles,
   UserRound,
   Menu,
   X,
@@ -334,23 +336,77 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={150}>
-          <div className="relative mx-auto max-w-sm">
+          <div className="relative mx-auto w-full max-w-sm sm:max-w-md">
+            {/* Ambient background glow */}
             <div
               aria-hidden
-              className="absolute -inset-3 rounded-3xl bg-accent-glow blur-2xl"
+              className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-gradient-to-b from-primary/25 via-primary/10 to-transparent blur-3xl opacity-80"
             />
-            <img
-              src={hassanHero}
-              alt="Hassan Wali, full stack web developer"
-              className="relative w-full object-contain drop-shadow-xl"
-              loading="eager"
+
+            {/* Architectural backdrop card / pedestal container */}
+            <div
+              aria-hidden
+              className="absolute inset-x-2 sm:inset-x-4 bottom-0 top-12 rounded-[2.5rem] border border-border/80 bg-gradient-to-b from-primary/10 via-surface/60 to-surface/90 shadow-xl backdrop-blur-sm -z-0"
             />
-            <img
-              src={hassanHero}
-              alt="Hassan Wali hero"
-              className="absolute inset-0 w-full h-full object-cover opacity-20"
-              loading="eager"
+
+            {/* Glowing spotlight behind head & shoulders */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 size-48 rounded-full bg-primary/20 blur-2xl"
             />
+
+            {/* Floating Badge 1: Top-Right (5.0 Rating & Trust) */}
+            <div className="animate-float-slow absolute -top-3 right-0 sm:-right-4 z-20 flex items-center gap-2.5 rounded-2xl border border-border/80 bg-background/95 px-3.5 py-2.5 shadow-card backdrop-blur-md transition-transform hover:scale-105">
+              <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-amber-500/15 text-amber-500">
+                <Star className="size-4.5 fill-amber-500 text-amber-500" />
+              </div>
+              <div className="text-left">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs font-bold text-foreground">5.0 Rating</span>
+                  <span className="flex text-amber-500 text-[10px] leading-none">★★★★★</span>
+                </div>
+                <p className="text-[11px] font-medium text-muted-foreground">100% Client Satisfaction</p>
+              </div>
+            </div>
+
+            {/* Floating Badge 2: Bottom-Left (50+ Projects Delivered) */}
+            <div className="animate-float-delayed absolute bottom-8 -left-2 sm:-left-6 z-20 flex items-center gap-3 rounded-2xl border border-border/80 bg-background/95 px-3.5 py-2.5 shadow-card backdrop-blur-md transition-transform hover:scale-105">
+              <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-primary/15 text-primary">
+                <CheckCircle2 className="size-5" />
+              </div>
+              <div className="text-left">
+                <p className="text-xs font-bold tracking-tight text-foreground">50+ Projects</p>
+                <p className="text-[11px] font-medium text-muted-foreground">Successfully Delivered</p>
+              </div>
+            </div>
+
+            {/* Floating Badge 3: Bottom-Right (Stack & Expertise) */}
+            <div className="animate-float-slow absolute -bottom-3 right-2 sm:-right-2 z-20 flex items-center gap-2 rounded-xl border border-border/80 bg-background/95 px-3 py-1.5 shadow-card backdrop-blur-md">
+              <span className="relative flex size-2 shrink-0">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+              </span>
+              <div className="flex items-center gap-1 text-[11px] font-semibold text-foreground">
+                <Sparkles className="size-3 text-primary" />
+                <span>Full Stack &amp; Mobile</span>
+              </div>
+            </div>
+
+            {/* Portrait Image with soft bottom dissolve mask */}
+            <div className="relative z-10 overflow-hidden pt-4 pb-1">
+              <img
+                src={hassanHero}
+                alt="Hassan Wali, full stack web developer"
+                className="relative z-10 mx-auto block max-h-[460px] w-full object-contain drop-shadow-2xl [mask-image:linear-gradient(to_bottom,black_75%,transparent_98%)]"
+                loading="eager"
+              />
+
+              {/* Seamless gradient overlay to smoothly blend the bottom cut */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background via-background/70 to-transparent z-10"
+              />
+            </div>
           </div>
         </Reveal>
       </div>
