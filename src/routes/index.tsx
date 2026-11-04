@@ -15,7 +15,6 @@ import {
   X,
 } from "lucide-react";
 
-import portrait from "@/assets/hassan-wali-portrait-cutout.png.asset.json";
 import hassanHero from "@/assets/hassanhero.png";
 import projectKamran from "@/assets/project-kamran-cloth-house.jpg";
 import projectBannu from "@/assets/project-bannu-masala.jpg";
@@ -341,7 +340,7 @@ function Hero() {
               className="absolute -inset-3 rounded-3xl bg-accent-glow blur-2xl"
             />
             <img
-              src={portrait.url}
+              src={hassanHero}
               alt="Hassan Wali, full stack web developer"
               className="relative w-full object-contain drop-shadow-xl"
               loading="eager"
