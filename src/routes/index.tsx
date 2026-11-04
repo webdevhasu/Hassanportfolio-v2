@@ -210,7 +210,7 @@ const REVIEWS = [
 
 const PRICING_PLANS = [
   {
-    name: "Landing Page / Starter",
+    name: "Landing Page",
     badge: "Quick 2–3 Days",
     price: "Rs 5,000 – 8,000",
     period: "one-time",
@@ -716,11 +716,13 @@ function Pricing() {
                     {plan.description}
                   </p>
 
-                  <div className="mt-6 flex items-baseline gap-1.5 border-b border-border pb-6">
-                    <span className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
-                      {plan.price}
-                    </span>
-                    <span className="text-xs text-muted-foreground">({plan.period})</span>
+                  <div className="mt-5 border-b border-border pb-5">
+                    <div className="flex flex-wrap items-baseline gap-1.5">
+                      <span className="font-display text-2xl sm:text-[1.65rem] font-bold tracking-tight text-foreground whitespace-nowrap">
+                        {plan.price}
+                      </span>
+                      <span className="text-xs text-muted-foreground">({plan.period})</span>
+                    </div>
                   </div>
 
                   <ul className="mt-6 space-y-3">
