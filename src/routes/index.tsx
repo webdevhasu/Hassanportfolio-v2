@@ -558,6 +558,61 @@ function Hero() {
 }
 
 
+
+function StatsBar() {
+  const stats = [
+    {
+      stat: "100%",
+      label: "Satisfaction",
+      desc: "Zero-risk policy — pay 100% after work completion",
+      icon: ShieldCheck,
+    },
+    {
+      stat: "2–4 Days",
+      label: "Fast Turnaround",
+      desc: "Fast on-time delivery for landing & business sites",
+      icon: Clock,
+    },
+    {
+      stat: "24/7",
+      label: "Direct Support",
+      desc: "Direct WhatsApp communication without middleman",
+      icon: MessageCircle,
+    },
+  ];
+
+  return (
+    <section className="border-t border-border bg-surface/40 py-8 sm:py-10">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="grid gap-4 sm:grid-cols-3">
+          {stats.map((item, i) => (
+            <Reveal key={item.label} delay={i * 100}>
+              <div className="flex items-center gap-4 rounded-2xl border border-border/80 bg-card p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/40">
+                <div className="grid size-12 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+                  <item.icon className="size-6" />
+                </div>
+                <div className="min-w-0">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display text-2xl font-bold tracking-tight text-foreground">
+                      {item.stat}
+                    </span>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+                      {item.label}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function TechStack() {
   return (
     <section className="border-y border-border bg-surface/50 py-10">
@@ -1023,6 +1078,7 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
+        <StatsBar />
         <TechStack />
         <Services />
         <Projects />
