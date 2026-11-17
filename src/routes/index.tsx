@@ -204,7 +204,13 @@ const REVIEWS = [
       "Hassan ne hamari online store zabardast bana di. Ab orders online aate hain aur site bohat fast chalti hai. Pura kaam waqt par deliver kiya. Highly recommended!",
   },
   {
-    name: "Hassan Irfan",
+    name: "Hassan Irfan & Abubakar",
+    business: "Nexora",
+    quote:
+      "Hamara electronics store bohat khoobsurat aur fast banaya hai. Product catalog, cart aur checkout bilkul smooth hain. Hassan bhai ka kaam 10/10 hai!",
+  },
+  {
+    name: "Irfan Khan",
     business: "Bannu Masala",
     quote:
       "Bohat professional kaam kiya bhai ne. Website hamare business ke liye bilkul sahi design hui, aur mobile pe bhi perfect chalti hai. Shukriya Hassan!",
@@ -734,13 +740,13 @@ function Projects() {
 function Reviews() {
   return (
     <section id="reviews" className="border-t border-border py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="Reviews"
           title="What Clients Say"
           subtitle="Feedback straight from the people I've built for."
         />
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {REVIEWS.map((review, i) => (
             <Reveal key={review.name} delay={i * 100}>
               <figure className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/40">
