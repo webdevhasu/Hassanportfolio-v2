@@ -639,11 +639,15 @@ function TechStack() {
           {TECH_STACK.map((tech) => (
             <div
               key={tech.name}
-              className="flex items-center justify-center gap-2 rounded-xl border border-border/80 bg-card px-3.5 py-2 shadow-sm transition-transform hover:-translate-y-0.5 hover:border-primary/40"
+              className="flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl border border-border/80 bg-card px-2.5 sm:px-3.5 py-2 shadow-sm transition-transform hover:-translate-y-0.5 hover:border-primary/40"
             >
-              <span className="size-2 rounded-full bg-primary" />
-              <span className="text-sm font-semibold text-foreground">{tech.name}</span>
-              <span className="text-[11px] text-muted-foreground">({tech.category})</span>
+              <span className="size-2 shrink-0 rounded-full bg-primary" />
+              <span className="text-xs sm:text-sm font-semibold text-foreground whitespace-nowrap">
+                {tech.name}
+              </span>
+              <span className="hidden sm:inline text-[11px] text-muted-foreground whitespace-nowrap">
+                ({tech.category})
+              </span>
             </div>
           ))}
         </div>
