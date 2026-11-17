@@ -30,6 +30,7 @@ import hassanHero from "@/assets/hassanhero.webp";
 import projectKamran from "@/assets/project-kamran-cloth-house.webp";
 import projectBannu from "@/assets/project-bannu-masala.webp";
 import projectNorthlinks from "@/assets/project-northlinks-broadband.webp";
+import projectNexora from "@/assets/project-nexora-electronics.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -168,6 +169,14 @@ const PROJECTS = [
     domain: "kamranclothhouse.pk",
     price: "Rs 30,000",
     image: projectKamran,
+  },
+  {
+    name: "Nexora",
+    type: "Electronics e-commerce store",
+    url: "https://www.nexorafashion.online",
+    domain: "nexorafashion.online",
+    price: "Rs 30,000",
+    image: projectNexora,
   },
   {
     name: "Bannu Masala",
@@ -684,13 +693,13 @@ function ProjectCover({ image, name }: { image: string; name: string }) {
 function Projects() {
   return (
     <section id="projects" className="border-t border-border bg-surface py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="Projects"
           title="Recent Work"
           subtitle="Real projects for real businesses — each one live and working today."
         />
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PROJECTS.map((project, i) => (
             <Reveal key={project.name} delay={i * 100}>
               <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/40">
