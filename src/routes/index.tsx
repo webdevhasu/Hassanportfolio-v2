@@ -538,8 +538,8 @@ function HeroCardDeck() {
               style={{ transform: transformStyle, zIndex, opacity }}
               className={`absolute inset-x-4 sm:inset-x-6 top-0 bottom-0 overflow-hidden rounded-[2rem] border backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                 isActive
-                  ? "border-white/80 bg-white/55 shadow-[0_24px_54px_-14px_rgba(30,58,138,0.28),inset_0_1px_1px_rgba(255,255,255,0.95)] ring-1 ring-primary/20"
-                  : "border-white/65 bg-white/35 shadow-[0_14px_34px_-12px_rgba(30,58,138,0.18),inset_0_1px_1px_rgba(255,255,255,0.8)] cursor-pointer hover:bg-white/45"
+                  ? "border-white/70 bg-white/30 shadow-[0_24px_54px_-14px_rgba(30,58,138,0.26),inset_0_1px_1px_rgba(255,255,255,0.9)] ring-1 ring-white/40"
+                  : "border-white/55 bg-white/20 shadow-[0_14px_34px_-12px_rgba(30,58,138,0.18),inset_0_1px_1px_rgba(255,255,255,0.7)] cursor-pointer hover:bg-white/30"
               }`}
             >
               {/* Subtle specular glass sheen */}
@@ -552,11 +552,11 @@ function HeroCardDeck() {
               {slide.id === "profile" && (
                 <div className="relative flex h-full flex-col justify-between bg-gradient-to-b from-primary/15 via-white/30 to-white/60">
                   <div className="relative z-20 flex items-center justify-between px-4 pt-4">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/80 bg-white/65 px-3 py-1 text-[11px] font-bold text-foreground shadow-sm backdrop-blur-md">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/65 bg-white/25 px-3 py-1 text-[11px] font-bold backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] text-foreground shadow-sm backdrop-blur-md">
                       <Star className="size-3.5 fill-amber-500 text-amber-500" />
                       5.0 Rating
                     </span>
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/80 bg-white/65 px-3 py-1 text-[11px] font-semibold text-foreground shadow-sm backdrop-blur-md">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/65 bg-white/25 px-3 py-1 text-[11px] font-semibold backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] text-foreground shadow-sm backdrop-blur-md">
                       <span className="size-2 rounded-full bg-emerald-500" />
                       Available
                     </span>
@@ -579,7 +579,7 @@ function HeroCardDeck() {
                     />
                   </div>
 
-                  <div className="relative z-20 border-t border-white/70 bg-white/60 px-4 pt-3 pb-12 backdrop-blur-xl">
+                  <div className="relative z-20 border-t border-white/55 bg-white/30 px-4 pt-3 pb-12 backdrop-blur-xl">
                     <p className="font-display text-sm font-bold text-foreground">Hassan Wali</p>
                     <p className="text-[11px] text-foreground/75">
                       Full Stack Web &amp; App Developer • Chitral, PK
@@ -603,10 +603,10 @@ function HeroCardDeck() {
                     aria-hidden
                     className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-900/15 to-transparent"
                   />
-                  <span className="absolute top-4 left-4 z-20 rounded-full border border-white/70 bg-white/75 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary shadow-sm backdrop-blur-md">
+                  <span className="absolute top-4 left-4 z-20 rounded-full border border-white/65 bg-white/30 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-foreground backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] shadow-sm backdrop-blur-md">
                     E-Commerce
                   </span>
-                  <div className="relative z-20 m-3 mb-12 rounded-2xl border border-white/75 bg-white/75 p-4 shadow-lg backdrop-blur-xl">
+                  <div className="relative z-20 m-3 mb-12 rounded-2xl border border-white/60 bg-white/40 p-4 shadow-[0_8px_32px_rgba(15,23,42,0.14),inset_0_1px_1px_rgba(255,255,255,0.8)] backdrop-blur-xl">
                     <h3 className="font-display text-base font-bold text-foreground">
                       Online Stores That Sell
                     </h3>
@@ -614,8 +614,8 @@ function HeroCardDeck() {
                       Nexora Electronics &amp; Kamran Cloth House — COD, online payments &amp; admin dashboard.
                     </p>
                     <div className="mt-2.5 flex flex-wrap gap-1.5">
-                      <span className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-[10px] font-semibold text-primary">COD &amp; Online Pay</span>
-                      <span className="rounded-full border border-white/80 bg-white/80 px-2.5 py-0.5 text-[10px] font-semibold text-foreground">Order Tracking</span>
+                      <span className="rounded-full border border-primary/30 bg-primary/15 px-2.5 py-0.5 text-[10px] font-semibold text-primary backdrop-blur-md">COD &amp; Online Pay</span>
+                      <span className="rounded-full border border-white/60 bg-white/30 px-2.5 py-0.5 text-[10px] font-semibold text-foreground backdrop-blur-md">Order Tracking</span>
                     </div>
                   </div>
                 </div>
@@ -636,10 +636,10 @@ function HeroCardDeck() {
                     aria-hidden
                     className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-900/15 to-transparent"
                   />
-                  <span className="absolute top-4 left-4 z-20 rounded-full border border-white/70 bg-white/75 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary shadow-sm backdrop-blur-md">
+                  <span className="absolute top-4 left-4 z-20 rounded-full border border-white/65 bg-white/30 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-foreground backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] shadow-sm backdrop-blur-md">
                     Business Sites
                   </span>
-                  <div className="relative z-20 m-3 mb-12 rounded-2xl border border-white/75 bg-white/75 p-4 shadow-lg backdrop-blur-xl">
+                  <div className="relative z-20 m-3 mb-12 rounded-2xl border border-white/60 bg-white/40 p-4 shadow-[0_8px_32px_rgba(15,23,42,0.14),inset_0_1px_1px_rgba(255,255,255,0.8)] backdrop-blur-xl">
                     <h3 className="font-display text-base font-bold text-foreground">
                       Fast Business Websites
                     </h3>
@@ -647,8 +647,8 @@ function HeroCardDeck() {
                       Bannu Masala &amp; Northlinks Broadband — mobile responsive &amp; Google SEO ready.
                     </p>
                     <div className="mt-2.5 flex flex-wrap gap-1.5">
-                      <span className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-[10px] font-semibold text-primary">Local SEO</span>
-                      <span className="rounded-full border border-white/80 bg-white/80 px-2.5 py-0.5 text-[10px] font-semibold text-foreground">2–4 Days Delivery</span>
+                      <span className="rounded-full border border-primary/30 bg-primary/15 px-2.5 py-0.5 text-[10px] font-semibold text-primary backdrop-blur-md">Local SEO</span>
+                      <span className="rounded-full border border-white/60 bg-white/30 px-2.5 py-0.5 text-[10px] font-semibold text-foreground backdrop-blur-md">2–4 Days Delivery</span>
                     </div>
                   </div>
                 </div>
@@ -661,7 +661,7 @@ function HeroCardDeck() {
                     <span className="grid size-11 place-items-center rounded-2xl border border-white/70 bg-primary text-primary-foreground shadow-glow">
                       <Smartphone className="size-5" />
                     </span>
-                    <span className="rounded-full border border-white/80 bg-white/70 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary backdrop-blur-md">
+                    <span className="rounded-full border border-white/60 bg-white/25 px-3 py-1 text-[10px] backdrop-blur-xl font-bold uppercase tracking-wider text-primary backdrop-blur-md">
                       iOS &amp; Android
                     </span>
                   </div>
@@ -675,7 +675,7 @@ function HeroCardDeck() {
                     </p>
                     <div className="space-y-2 pt-1">
                       {["Android & iOS Cross-Platform", "Custom Admin Dashboards", "React, Next.js & Node.js"].map((feat) => (
-                        <div key={feat} className="flex items-center gap-2 rounded-xl border border-white/80 bg-white/65 px-3 py-2 text-xs font-medium text-foreground shadow-sm backdrop-blur-md">
+                        <div key={feat} className="flex items-center gap-2 rounded-xl border border-white/60 bg-white/30 px-3 py-2 text-xs shadow-[inset_0_1px_1px_rgba(255,255,255,0.75)] font-medium text-foreground shadow-sm backdrop-blur-md">
                           <CheckCircle2 className="size-3.5 shrink-0 text-primary" />
                           <span>{feat}</span>
                         </div>
@@ -692,7 +692,7 @@ function HeroCardDeck() {
                     <span className="grid size-11 place-items-center rounded-2xl border border-white/70 bg-emerald-600 text-white shadow-sm">
                       <ShieldCheck className="size-5" />
                     </span>
-                    <span className="rounded-full border border-white/80 bg-white/70 px-2.5 py-1 text-xs text-amber-500 shadow-sm backdrop-blur-md">
+                    <span className="rounded-full border border-white/60 bg-white/25 px-2.5 py-1 text-xs text-amber-500 shadow-sm backdrop-blur-md">
                       ★★★★★
                     </span>
                   </div>
@@ -701,7 +701,7 @@ function HeroCardDeck() {
                     <h3 className="font-display text-xl font-bold text-foreground">
                       Zero-Risk &amp; Proven Results
                     </h3>
-                    <div className="rounded-2xl border border-white/80 bg-white/70 p-3.5 shadow-sm backdrop-blur-md">
+                    <div className="rounded-2xl border border-white/60 bg-white/30 p-3.5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.75)] backdrop-blur-xl">
                       <p className="text-xs italic leading-relaxed text-foreground/90">
                         "Hamara electronics store bohat khoobsurat aur fast banaya hai. Hassan bhai ka kaam 10/10 hai!"
                       </p>
@@ -719,7 +719,7 @@ function HeroCardDeck() {
 
               {/* Active Glass Card Footer Bar */}
               {isActive && (
-                <div className="absolute inset-x-0 bottom-0 z-30 flex items-center justify-between gap-3 border-t border-white/75 bg-white/70 px-4 py-2 backdrop-blur-xl">
+                <div className="absolute inset-x-0 bottom-0 z-30 flex items-center justify-between gap-3 border-t border-white/55 bg-white/30 px-4 py-2 backdrop-blur-xl">
                   <span className="font-mono text-[11px] font-semibold text-foreground/75">
                     0{active + 1} / 0{total}
                   </span>
@@ -737,7 +737,7 @@ function HeroCardDeck() {
                         goPrev();
                       }}
                       aria-label="Previous slide"
-                      className="grid size-6 place-items-center rounded-full border border-white/80 bg-white/80 text-foreground shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                      className="grid size-6 place-items-center rounded-full border border-white/65 bg-white/25 text-foreground shadow-sm backdrop-blur-md transition-colors hover:border-primary/60 hover:bg-primary/80 hover:text-white"
                     >
                       <ChevronLeft className="size-3.5" />
                     </button>
@@ -748,7 +748,7 @@ function HeroCardDeck() {
                         goNext();
                       }}
                       aria-label="Next slide"
-                      className="grid size-6 place-items-center rounded-full border border-white/80 bg-white/80 text-foreground shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                      className="grid size-6 place-items-center rounded-full border border-white/65 bg-white/25 text-foreground shadow-sm backdrop-blur-md transition-colors hover:border-primary/60 hover:bg-primary/80 hover:text-white"
                     >
                       <ChevronRight className="size-3.5" />
                     </button>
@@ -762,7 +762,7 @@ function HeroCardDeck() {
 
       {/* Ref-Style Glossy Frosted Glass Bottom Dock */}
       <div className="mt-5 flex justify-center">
-        <div className="inline-flex items-center gap-2 sm:gap-4 rounded-full border border-white/80 bg-white/50 px-4 py-2 shadow-[0_14px_34px_-10px_rgba(30,58,138,0.22),inset_0_1px_2px_rgba(255,255,255,0.95)] backdrop-blur-2xl">
+        <div className="inline-flex items-center gap-2 sm:gap-4 rounded-full border border-white/65 bg-white/25 px-4 py-2 shadow-[0_14px_34px_-10px_rgba(30,58,138,0.22),inset_0_1px_2px_rgba(255,255,255,0.9)] backdrop-blur-2xl">
           {HERO_SLIDES.map((slide, i) => {
             const Icon = slide.icon;
             const isCurrent = i === active;
@@ -777,8 +777,8 @@ function HeroCardDeck() {
                 <span
                   className={`grid size-9 sm:size-10 place-items-center rounded-full border transition-all duration-300 ${
                     isCurrent
-                      ? "scale-105 border-white bg-primary text-primary-foreground shadow-[0_0_20px_rgba(37,99,235,0.45)] ring-2 ring-white/80"
-                      : "border-white/75 bg-white/60 text-foreground/75 hover:bg-white/90 hover:text-primary"
+                      ? "scale-105 border-white/80 bg-primary/80 text-white backdrop-blur-md shadow-[0_0_20px_rgba(37,99,235,0.45)] ring-2 ring-white/70"
+                      : "border-white/60 bg-white/25 text-foreground/80 backdrop-blur-md hover:bg-white/45 hover:text-primary"
                   }`}
                 >
                   <Icon className="size-4" />
