@@ -486,19 +486,19 @@ function HeroCardDeck() {
 
   return (
     <div
-      className="relative mx-auto w-full max-w-[340px] sm:max-w-[420px] select-none"
+      className="relative mx-auto w-full max-w-[340px] sm:max-w-[430px] select-none"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Ambient background glow */}
+      {/* Rich ambient cobalt & sky glow behind glass stack so translucency pops */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -inset-6 rounded-[3rem] bg-gradient-to-b from-primary/20 via-primary/10 to-transparent blur-3xl opacity-80"
+        className="pointer-events-none absolute -inset-6 rounded-[3rem] bg-[radial-gradient(circle_at_50%_40%,oklch(0.55_0.18_255_/_28%),oklch(0.70_0.14_235_/_14%)_50%,transparent_75%)] blur-2xl"
       />
 
-      {/* 3D Stacked Cards Stage */}
+      {/* 3D Stacked Glass Cards Stage */}
       <div className="relative h-[400px] sm:h-[430px] w-full [perspective:1200px]">
         {HERO_SLIDES.map((slide, i) => {
           let offset = (i - active + total) % total;
@@ -514,21 +514,21 @@ function HeroCardDeck() {
             zIndex = 30;
             opacity = 1;
           } else if (offset === -1) {
-            transformStyle = "translateX(-18%) scale(0.87) rotateY(7deg)";
+            transformStyle = "translateX(-19%) scale(0.87) rotateY(7deg)";
             zIndex = 20;
-            opacity = 0.82;
+            opacity = 0.85;
           } else if (offset === 1) {
-            transformStyle = "translateX(18%) scale(0.87) rotateY(-7deg)";
+            transformStyle = "translateX(19%) scale(0.87) rotateY(-7deg)";
             zIndex = 20;
-            opacity = 0.82;
+            opacity = 0.85;
           } else if (offset === -2) {
-            transformStyle = "translateX(-30%) scale(0.75) rotateY(12deg)";
+            transformStyle = "translateX(-32%) scale(0.75) rotateY(12deg)";
             zIndex = 10;
-            opacity = 0.45;
+            opacity = 0.55;
           } else {
-            transformStyle = "translateX(30%) scale(0.75) rotateY(-12deg)";
+            transformStyle = "translateX(32%) scale(0.75) rotateY(-12deg)";
             zIndex = 10;
-            opacity = 0.45;
+            opacity = 0.55;
           }
 
           return (
@@ -536,37 +536,41 @@ function HeroCardDeck() {
               key={slide.id}
               onClick={() => !isActive && setActive(i)}
               style={{ transform: transformStyle, zIndex, opacity }}
-              className={`absolute inset-x-4 sm:inset-x-6 top-0 bottom-0 overflow-hidden rounded-[2rem] border bg-card transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              className={`absolute inset-x-4 sm:inset-x-6 top-0 bottom-0 overflow-hidden rounded-[2rem] border backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                 isActive
-                  ? "border-primary/40 shadow-2xl ring-1 ring-primary/15"
-                  : "border-border/80 shadow-card cursor-pointer hover:opacity-95"
+                  ? "border-white/80 bg-white/55 shadow-[0_24px_54px_-14px_rgba(30,58,138,0.28),inset_0_1px_1px_rgba(255,255,255,0.95)] ring-1 ring-primary/20"
+                  : "border-white/65 bg-white/35 shadow-[0_14px_34px_-12px_rgba(30,58,138,0.18),inset_0_1px_1px_rgba(255,255,255,0.8)] cursor-pointer hover:bg-white/45"
               }`}
             >
+              {/* Subtle specular glass sheen */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-br from-white/55 via-transparent to-primary/10"
+              />
+
               {/* Slide 1: Hassan Wali Portrait */}
               {slide.id === "profile" && (
-                <div className="relative flex h-full flex-col justify-between bg-gradient-to-b from-primary/10 via-surface/70 to-card">
-                  {/* Top Badges */}
+                <div className="relative flex h-full flex-col justify-between bg-gradient-to-b from-primary/15 via-white/30 to-white/60">
                   <div className="relative z-20 flex items-center justify-between px-4 pt-4">
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-background/90 px-2.5 py-1 text-[11px] font-bold text-foreground shadow-sm backdrop-blur-md">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/80 bg-white/65 px-3 py-1 text-[11px] font-bold text-foreground shadow-sm backdrop-blur-md">
                       <Star className="size-3.5 fill-amber-500 text-amber-500" />
                       5.0 Rating
                     </span>
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-background/90 px-2.5 py-1 text-[11px] font-semibold text-foreground shadow-sm backdrop-blur-md">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/80 bg-white/65 px-3 py-1 text-[11px] font-semibold text-foreground shadow-sm backdrop-blur-md">
                       <span className="size-2 rounded-full bg-emerald-500" />
                       Available
                     </span>
                   </div>
 
-                  {/* Portrait */}
                   <div className="relative flex-1 overflow-hidden">
                     <div
                       aria-hidden
-                      className="pointer-events-none absolute top-4 left-1/2 -translate-x-1/2 size-44 rounded-full bg-primary/20 blur-2xl"
+                      className="pointer-events-none absolute top-4 left-1/2 -translate-x-1/2 size-44 rounded-full bg-primary/25 blur-2xl"
                     />
                     <img
                       src={hassanHero}
                       alt="Hassan Wali, full stack web developer"
-                      className="relative z-10 mx-auto h-full w-full object-contain object-bottom drop-shadow-xl [mask-image:linear-gradient(to_bottom,black_78%,transparent_98%)]"
+                      className="relative z-10 mx-auto h-full w-full object-contain object-bottom drop-shadow-xl [mask-image:linear-gradient(to_bottom,black_80%,transparent_98%)]"
                       loading="eager"
                       fetchPriority="high"
                       width="460"
@@ -575,77 +579,76 @@ function HeroCardDeck() {
                     />
                   </div>
 
-                  {/* Bottom Caption Strip */}
-                  <div className="relative z-20 border-t border-border/60 bg-background/90 px-4 pt-3 pb-11 backdrop-blur-md">
+                  <div className="relative z-20 border-t border-white/70 bg-white/60 px-4 pt-3 pb-12 backdrop-blur-xl">
                     <p className="font-display text-sm font-bold text-foreground">Hassan Wali</p>
-                    <p className="text-[11px] text-muted-foreground">
+                    <p className="text-[11px] text-foreground/75">
                       Full Stack Web &amp; App Developer • Chitral, PK
                     </p>
                   </div>
                 </div>
               )}
 
-              {/* Slide 2: E-Commerce Stores */}
+              {/* Slide 2: E-Commerce Stores (Full-bleed visual + frosted glass overlay) */}
               {slide.id === "ecommerce" && (
-                <div className="flex h-full flex-col justify-between bg-card">
-                  <div className="relative h-48 overflow-hidden border-b border-border bg-surface">
-                    <img
-                      src={projectNexora}
-                      alt="Nexora Electronics E-commerce Store"
-                      className="h-full w-full object-cover object-top"
-                      loading="lazy"
-                      width="1088"
-                      height="608"
-                    />
-                    <span className="absolute top-3 left-3 rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground shadow">
-                      E-Commerce
-                    </span>
-                  </div>
-                  <div className="flex flex-1 flex-col justify-between p-5 pb-12">
-                    <div>
-                      <h3 className="font-display text-lg font-bold text-foreground">
-                        Online Stores That Sell
-                      </h3>
-                      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                        Built Nexora Electronics &amp; Kamran Cloth House with smooth cart, COD, online payments &amp; admin dashboard.
-                      </p>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      <span className="rounded-md bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">COD &amp; Online Pay</span>
-                      <span className="rounded-md bg-secondary px-2 py-0.5 text-[10px] font-semibold text-foreground">Order Tracking</span>
+                <div className="relative flex h-full flex-col justify-end overflow-hidden">
+                  <img
+                    src={projectNexora}
+                    alt="Nexora Electronics E-commerce Store"
+                    className="absolute inset-0 h-full w-full object-cover object-top"
+                    loading="lazy"
+                    width="1088"
+                    height="608"
+                  />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-900/15 to-transparent"
+                  />
+                  <span className="absolute top-4 left-4 z-20 rounded-full border border-white/70 bg-white/75 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary shadow-sm backdrop-blur-md">
+                    E-Commerce
+                  </span>
+                  <div className="relative z-20 m-3 mb-12 rounded-2xl border border-white/75 bg-white/75 p-4 shadow-lg backdrop-blur-xl">
+                    <h3 className="font-display text-base font-bold text-foreground">
+                      Online Stores That Sell
+                    </h3>
+                    <p className="mt-1 text-xs leading-relaxed text-foreground/80">
+                      Nexora Electronics &amp; Kamran Cloth House — COD, online payments &amp; admin dashboard.
+                    </p>
+                    <div className="mt-2.5 flex flex-wrap gap-1.5">
+                      <span className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-[10px] font-semibold text-primary">COD &amp; Online Pay</span>
+                      <span className="rounded-full border border-white/80 bg-white/80 px-2.5 py-0.5 text-[10px] font-semibold text-foreground">Order Tracking</span>
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* Slide 3: Business Websites */}
+              {/* Slide 3: Business Websites (Full-bleed visual + frosted glass overlay) */}
               {slide.id === "business" && (
-                <div className="flex h-full flex-col justify-between bg-card">
-                  <div className="relative h-48 overflow-hidden border-b border-border bg-surface">
-                    <img
-                      src={projectBannu}
-                      alt="Bannu Masala Business Website"
-                      className="h-full w-full object-cover object-top"
-                      loading="lazy"
-                      width="1088"
-                      height="608"
-                    />
-                    <span className="absolute top-3 left-3 rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground shadow">
-                      Business Sites
-                    </span>
-                  </div>
-                  <div className="flex flex-1 flex-col justify-between p-5 pb-12">
-                    <div>
-                      <h3 className="font-display text-lg font-bold text-foreground">
-                        Fast Business Websites
-                      </h3>
-                      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                        Clean, trustworthy websites like Bannu Masala &amp; Northlinks Broadband — mobile responsive and Google SEO ready.
-                      </p>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      <span className="rounded-md bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">Local SEO</span>
-                      <span className="rounded-md bg-secondary px-2 py-0.5 text-[10px] font-semibold text-foreground">2–4 Days Delivery</span>
+                <div className="relative flex h-full flex-col justify-end overflow-hidden">
+                  <img
+                    src={projectBannu}
+                    alt="Bannu Masala Business Website"
+                    className="absolute inset-0 h-full w-full object-cover object-top"
+                    loading="lazy"
+                    width="1088"
+                    height="608"
+                  />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/65 via-slate-900/15 to-transparent"
+                  />
+                  <span className="absolute top-4 left-4 z-20 rounded-full border border-white/70 bg-white/75 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary shadow-sm backdrop-blur-md">
+                    Business Sites
+                  </span>
+                  <div className="relative z-20 m-3 mb-12 rounded-2xl border border-white/75 bg-white/75 p-4 shadow-lg backdrop-blur-xl">
+                    <h3 className="font-display text-base font-bold text-foreground">
+                      Fast Business Websites
+                    </h3>
+                    <p className="mt-1 text-xs leading-relaxed text-foreground/80">
+                      Bannu Masala &amp; Northlinks Broadband — mobile responsive &amp; Google SEO ready.
+                    </p>
+                    <div className="mt-2.5 flex flex-wrap gap-1.5">
+                      <span className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-[10px] font-semibold text-primary">Local SEO</span>
+                      <span className="rounded-full border border-white/80 bg-white/80 px-2.5 py-0.5 text-[10px] font-semibold text-foreground">2–4 Days Delivery</span>
                     </div>
                   </div>
                 </div>
@@ -653,26 +656,26 @@ function HeroCardDeck() {
 
               {/* Slide 4: Mobile Apps & Custom Systems */}
               {slide.id === "apps" && (
-                <div className="flex h-full flex-col justify-between bg-gradient-to-br from-primary/5 via-card to-surface p-5 pb-12">
+                <div className="relative z-20 flex h-full flex-col justify-between bg-gradient-to-br from-primary/15 via-white/40 to-sky-400/15 p-5 pb-14">
                   <div className="flex items-center justify-between">
-                    <span className="grid size-11 place-items-center rounded-2xl bg-primary text-primary-foreground shadow-glow">
+                    <span className="grid size-11 place-items-center rounded-2xl border border-white/70 bg-primary text-primary-foreground shadow-glow">
                       <Smartphone className="size-5" />
                     </span>
-                    <span className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">
+                    <span className="rounded-full border border-white/80 bg-white/70 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary backdrop-blur-md">
                       iOS &amp; Android
                     </span>
                   </div>
 
                   <div className="my-auto space-y-3">
                     <h3 className="font-display text-xl font-bold text-foreground">
-                      Mobile Apps &amp; Custom Web Systems
+                      Mobile Apps &amp; Custom Systems
                     </h3>
-                    <p className="text-xs leading-relaxed text-muted-foreground">
-                      Cross-platform mobile apps, client portals, real-time dashboards, and scalable full-stack backends.
+                    <p className="text-xs leading-relaxed text-foreground/80">
+                      Cross-platform mobile apps, client portals, real-time dashboards &amp; scalable backends.
                     </p>
                     <div className="space-y-2 pt-1">
                       {["Android & iOS Cross-Platform", "Custom Admin Dashboards", "React, Next.js & Node.js"].map((feat) => (
-                        <div key={feat} className="flex items-center gap-2 rounded-xl border border-border/70 bg-background/80 px-3 py-2 text-xs font-medium text-foreground">
+                        <div key={feat} className="flex items-center gap-2 rounded-xl border border-white/80 bg-white/65 px-3 py-2 text-xs font-medium text-foreground shadow-sm backdrop-blur-md">
                           <CheckCircle2 className="size-3.5 shrink-0 text-primary" />
                           <span>{feat}</span>
                         </div>
@@ -684,19 +687,21 @@ function HeroCardDeck() {
 
               {/* Slide 5: Results & Zero-Risk Guarantee */}
               {slide.id === "results" && (
-                <div className="flex h-full flex-col justify-between bg-gradient-to-br from-emerald-500/5 via-card to-primary/5 p-5 pb-12">
+                <div className="relative z-20 flex h-full flex-col justify-between bg-gradient-to-br from-emerald-400/15 via-white/45 to-primary/15 p-5 pb-14">
                   <div className="flex items-center justify-between">
-                    <span className="grid size-11 place-items-center rounded-2xl bg-emerald-600 text-white shadow-sm">
+                    <span className="grid size-11 place-items-center rounded-2xl border border-white/70 bg-emerald-600 text-white shadow-sm">
                       <ShieldCheck className="size-5" />
                     </span>
-                    <div className="flex text-amber-500 text-xs">★★★★★</div>
+                    <span className="rounded-full border border-white/80 bg-white/70 px-2.5 py-1 text-xs text-amber-500 shadow-sm backdrop-blur-md">
+                      ★★★★★
+                    </span>
                   </div>
 
                   <div className="my-auto space-y-3">
                     <h3 className="font-display text-xl font-bold text-foreground">
                       Zero-Risk &amp; Proven Results
                     </h3>
-                    <div className="rounded-2xl border border-border/80 bg-background/90 p-3.5 shadow-sm">
+                    <div className="rounded-2xl border border-white/80 bg-white/70 p-3.5 shadow-sm backdrop-blur-md">
                       <p className="text-xs italic leading-relaxed text-foreground/90">
                         "Hamara electronics store bohat khoobsurat aur fast banaya hai. Hassan bhai ka kaam 10/10 hai!"
                       </p>
@@ -704,7 +709,7 @@ function HeroCardDeck() {
                         — Hassan Irfan &amp; Abubakar (Nexora)
                       </p>
                     </div>
-                    <div className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-xs font-semibold text-emerald-700">
+                    <div className="flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/15 px-3 py-2 text-xs font-semibold text-emerald-800 backdrop-blur-md">
                       <Check className="size-4 shrink-0" />
                       <span>100% Pay After Work on Landing Pages</span>
                     </div>
@@ -712,13 +717,13 @@ function HeroCardDeck() {
                 </div>
               )}
 
-              {/* Active Card Footer Bar: Counter + Progress + Arrows */}
+              {/* Active Glass Card Footer Bar */}
               {isActive && (
-                <div className="absolute inset-x-0 bottom-0 z-30 flex items-center justify-between gap-3 border-t border-border/60 bg-background/95 px-4 py-2 backdrop-blur-md">
-                  <span className="font-mono text-[11px] font-semibold text-muted-foreground">
+                <div className="absolute inset-x-0 bottom-0 z-30 flex items-center justify-between gap-3 border-t border-white/75 bg-white/70 px-4 py-2 backdrop-blur-xl">
+                  <span className="font-mono text-[11px] font-semibold text-foreground/75">
                     0{active + 1} / 0{total}
                   </span>
-                  <div className="h-1 flex-1 overflow-hidden rounded-full bg-secondary">
+                  <div className="h-1 flex-1 overflow-hidden rounded-full bg-primary/15">
                     <div
                       className="h-full rounded-full bg-primary transition-all duration-300"
                       style={{ width: `${((active + 1) / total) * 100}%` }}
@@ -732,7 +737,7 @@ function HeroCardDeck() {
                         goPrev();
                       }}
                       aria-label="Previous slide"
-                      className="grid size-6 place-items-center rounded-full border border-border bg-card text-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                      className="grid size-6 place-items-center rounded-full border border-white/80 bg-white/80 text-foreground shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
                     >
                       <ChevronLeft className="size-3.5" />
                     </button>
@@ -743,7 +748,7 @@ function HeroCardDeck() {
                         goNext();
                       }}
                       aria-label="Next slide"
-                      className="grid size-6 place-items-center rounded-full border border-border bg-card text-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                      className="grid size-6 place-items-center rounded-full border border-white/80 bg-white/80 text-foreground shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
                     >
                       <ChevronRight className="size-3.5" />
                     </button>
@@ -755,9 +760,9 @@ function HeroCardDeck() {
         })}
       </div>
 
-      {/* Bottom Interactive Icon Dock */}
+      {/* Ref-Style Glossy Frosted Glass Bottom Dock */}
       <div className="mt-5 flex justify-center">
-        <div className="inline-flex items-center gap-1 sm:gap-2 rounded-full border border-border/80 bg-card/90 p-1.5 shadow-card backdrop-blur-md">
+        <div className="inline-flex items-center gap-2 sm:gap-4 rounded-full border border-white/80 bg-white/50 px-4 py-2 shadow-[0_14px_34px_-10px_rgba(30,58,138,0.22),inset_0_1px_2px_rgba(255,255,255,0.95)] backdrop-blur-2xl">
           {HERO_SLIDES.map((slide, i) => {
             const Icon = slide.icon;
             const isCurrent = i === active;
@@ -767,14 +772,24 @@ function HeroCardDeck() {
                 type="button"
                 onClick={() => setActive(i)}
                 aria-label={`Show ${slide.label} card`}
-                className={`flex items-center gap-1.5 rounded-full px-2.5 sm:px-3 py-1.5 text-[11px] font-semibold transition-all duration-300 ${
-                  isCurrent
-                    ? "bg-primary text-primary-foreground shadow-glow"
-                    : "text-muted-foreground hover:bg-secondary hover:text-foreground"
-                }`}
+                className="group flex flex-col items-center gap-1 focus:outline-none"
               >
-                <Icon className="size-3.5 shrink-0" />
-                <span className={isCurrent ? "inline" : "hidden sm:inline"}>{slide.label}</span>
+                <span
+                  className={`grid size-9 sm:size-10 place-items-center rounded-full border transition-all duration-300 ${
+                    isCurrent
+                      ? "scale-105 border-white bg-primary text-primary-foreground shadow-[0_0_20px_rgba(37,99,235,0.45)] ring-2 ring-white/80"
+                      : "border-white/75 bg-white/60 text-foreground/75 hover:bg-white/90 hover:text-primary"
+                  }`}
+                >
+                  <Icon className="size-4" />
+                </span>
+                <span
+                  className={`text-[10px] font-semibold transition-colors ${
+                    isCurrent ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
+                  }`}
+                >
+                  {slide.label}
+                </span>
               </button>
             );
           })}
