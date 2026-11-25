@@ -1391,7 +1391,119 @@ function Footer() {
 }
 
 function Index() {
-  const structuredData = "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Person\",\"@id\":\"#hassan-wali\",\"name\":\"Hassan Wali\",\"jobTitle\":\"Full Stack Web Developer & App Builder\",\"description\":\"Professional web developer and mobile app creator from Chitral, Khyber Pakhtunkhwa, Pakistan.\",\"telephone\":\"+923474054450\",\"homeLocation\":{\"@type\":\"Place\",\"name\":\"Chitral, Khyber Pakhtunkhwa, Pakistan\"},\"nationality\":{\"@type\":\"Country\",\"name\":\"Pakistan\"},\"address\":{\"@type\":\"PostalAddress\",\"addressLocality\":\"Chitral\",\"addressRegion\":\"Khyber Pakhtunkhwa\",\"addressCountry\":\"PK\"},\"knowsAbout\":[\"Web Development\",\"Full Stack Web Development\",\"React\",\"Next.js\",\"Node.js\",\"TypeScript\",\"Mobile App Development\",\"E-Commerce Solutions\",\"Landing Pages\",\"SEO Optimization\"],\"areaServed\":[{\"@type\":\"City\",\"name\":\"Chitral\"},{\"@type\":\"AdministrativeArea\",\"name\":\"Khyber Pakhtunkhwa\"},{\"@type\":\"Country\",\"name\":\"Pakistan\"},{\"@type\":\"Place\",\"name\":\"Worldwide\"}]},{\"@type\":[\"ProfessionalService\",\"LocalBusiness\"],\"@id\":\"#hassan-wali-services\",\"name\":\"Hassan Wali — Web Development & App Services\",\"description\":\"Full-stack web development, custom business websites, ecommerce stores, and mobile applications based in Chitral, KPK, Pakistan.\",\"telephone\":\"+923474054450\",\"priceRange\":\"PKR 5,000 - PKR 50,000+\",\"address\":{\"@type\":\"PostalAddress\",\"addressLocality\":\"Chitral\",\"addressRegion\":\"Khyber Pakhtunkhwa\",\"addressCountry\":\"PK\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":35.851,\"longitude\":71.7864},\"openingHours\":\"Mo-Su 09:00-22:00\",\"areaServed\":[{\"@type\":\"City\",\"name\":\"Chitral\"},{\"@type\":\"AdministrativeArea\",\"name\":\"Khyber Pakhtunkhwa\"},{\"@type\":\"Country\",\"name\":\"Pakistan\"},{\"@type\":\"Place\",\"name\":\"Worldwide\"}]},{\"@type\":\"FAQPage\",\"@id\":\"#faq\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Who is Hassan Wali?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Hassan Wali is a full stack web developer and app builder based in Chitral, Khyber Pakhtunkhwa, Pakistan, serving clients across Pakistan (Peshawar, Islamabad, Lahore, Karachi) and worldwide.\"}},{\"@type\":\"Question\",\"name\":\"Are you available for web development projects in Chitral and Pakistan?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Yes! Hassan works with local businesses in Chitral, companies across Pakistan, as well as international clients worldwide for websites, e-commerce, and mobile apps.\"}},{\"@type\":\"Question\",\"name\":\"How to contact Hassan Wali for web development?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"You can reach Hassan directly on WhatsApp at +92 347 4054450 for a fast quote and project consultation.\"}}]}]}";
+  const siteUrl = "https://webdevhassan.vercel.app/";
+  const heroImageUrl = hassanHero.startsWith("http")
+    ? hassanHero
+    : `https://webdevhassan.vercel.app${hassanHero.startsWith("/") ? "" : "/"}${hassanHero}`;
+
+  const structuredData = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "#hassan-wali",
+        name: "Hassan Wali",
+        url: siteUrl,
+        image: heroImageUrl,
+        jobTitle: "Full Stack Web Developer & App Builder",
+        description:
+          "Professional web developer and mobile app creator from Chitral, Khyber Pakhtunkhwa, Pakistan.",
+        telephone: "+923474054450",
+        homeLocation: {
+          "@type": "Place",
+          name: "Chitral, Khyber Pakhtunkhwa, Pakistan",
+        },
+        nationality: { "@type": "Country", name: "Pakistan" },
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Chitral Town",
+          addressLocality: "Chitral",
+          addressRegion: "Khyber Pakhtunkhwa",
+          postalCode: "17200",
+          addressCountry: "PK",
+        },
+        knowsAbout: [
+          "Web Development",
+          "Full Stack Web Development",
+          "React",
+          "Next.js",
+          "Node.js",
+          "TypeScript",
+          "Mobile App Development",
+          "E-Commerce Solutions",
+          "Landing Pages",
+          "SEO Optimization",
+        ],
+        areaServed: [
+          { "@type": "City", name: "Chitral" },
+          { "@type": "AdministrativeArea", name: "Khyber Pakhtunkhwa" },
+          { "@type": "Country", name: "Pakistan" },
+          { "@type": "Place", name: "Worldwide" },
+        ],
+      },
+      {
+        "@type": ["ProfessionalService", "LocalBusiness"],
+        "@id": "#hassan-wali-services",
+        name: "Hassan Wali — Web Development & App Services",
+        url: siteUrl,
+        image: heroImageUrl,
+        description:
+          "Full-stack web development, custom business websites, ecommerce stores, and mobile applications based in Chitral, KPK, Pakistan.",
+        telephone: "+923474054450",
+        priceRange: "PKR 4,999 - PKR 50,000+",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Chitral Town",
+          addressLocality: "Chitral",
+          addressRegion: "Khyber Pakhtunkhwa",
+          postalCode: "17200",
+          addressCountry: "PK",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 35.851,
+          longitude: 71.7864,
+        },
+        openingHours: "Mo-Su 09:00-22:00",
+        areaServed: [
+          { "@type": "City", name: "Chitral" },
+          { "@type": "AdministrativeArea", name: "Khyber Pakhtunkhwa" },
+          { "@type": "Country", name: "Pakistan" },
+          { "@type": "Place", name: "Worldwide" },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "#faq",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "Who is Hassan Wali?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Hassan Wali is a full stack web developer and app builder based in Chitral, Khyber Pakhtunkhwa, Pakistan, serving clients across Pakistan (Peshawar, Islamabad, Lahore, Karachi) and worldwide.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Are you available for web development projects in Chitral and Pakistan?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes! Hassan works with local businesses in Chitral, companies across Pakistan, as well as international clients worldwide for websites, e-commerce, and mobile apps.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "How to contact Hassan Wali for web development?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "You can reach Hassan directly on WhatsApp at +92 347 4054450 for a fast quote and project consultation.",
+            },
+          },
+        ],
+      },
+    ],
+  });
   return (
     <div className="min-h-screen bg-background text-foreground">
       <script
