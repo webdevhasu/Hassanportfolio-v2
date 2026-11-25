@@ -11,6 +11,8 @@ import {
   Building2,
   Check,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
   Clock,
   Code2,
   Layers,
@@ -441,6 +443,347 @@ function Navbar() {
   );
 }
 
+
+const HERO_SLIDES = [
+  { id: "profile", label: "Profile", icon: UserRound },
+  { id: "ecommerce", label: "Stores", icon: ShoppingCart },
+  { id: "business", label: "Websites", icon: Building2 },
+  { id: "apps", label: "Apps", icon: Smartphone },
+  { id: "results", label: "Results", icon: ShieldCheck },
+];
+
+function HeroCardDeck() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+  const total = HERO_SLIDES.length;
+
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % total);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [paused, total]);
+
+  const goPrev = () => setActive((prev) => (prev - 1 + total) % total);
+  const goNext = () => setActive((prev) => (prev + 1) % total);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    setPaused(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current !== null) {
+      const diff = touchStartX.current - e.changedTouches[0].clientX;
+      if (diff > 40) goNext();
+      else if (diff < -40) goPrev();
+    }
+    touchStartX.current = null;
+    setPaused(false);
+  };
+
+  return (
+    <div
+      className="relative mx-auto w-full max-w-[340px] sm:max-w-[420px] select-none"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Ambient background glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -inset-6 rounded-[3rem] bg-gradient-to-b from-primary/20 via-primary/10 to-transparent blur-3xl opacity-80"
+      />
+
+      {/* 3D Stacked Cards Stage */}
+      <div className="relative h-[400px] sm:h-[430px] w-full [perspective:1200px]">
+        {HERO_SLIDES.map((slide, i) => {
+          let offset = (i - active + total) % total;
+          if (offset > total / 2) offset -= total;
+          const isActive = offset === 0;
+
+          let transformStyle = "";
+          let zIndex = 10;
+          let opacity = 0;
+
+          if (offset === 0) {
+            transformStyle = "translateX(0%) scale(1) rotateY(0deg)";
+            zIndex = 30;
+            opacity = 1;
+          } else if (offset === -1) {
+            transformStyle = "translateX(-18%) scale(0.87) rotateY(7deg)";
+            zIndex = 20;
+            opacity = 0.82;
+          } else if (offset === 1) {
+            transformStyle = "translateX(18%) scale(0.87) rotateY(-7deg)";
+            zIndex = 20;
+            opacity = 0.82;
+          } else if (offset === -2) {
+            transformStyle = "translateX(-30%) scale(0.75) rotateY(12deg)";
+            zIndex = 10;
+            opacity = 0.45;
+          } else {
+            transformStyle = "translateX(30%) scale(0.75) rotateY(-12deg)";
+            zIndex = 10;
+            opacity = 0.45;
+          }
+
+          return (
+            <div
+              key={slide.id}
+              onClick={() => !isActive && setActive(i)}
+              style={{ transform: transformStyle, zIndex, opacity }}
+              className={`absolute inset-x-4 sm:inset-x-6 top-0 bottom-0 overflow-hidden rounded-[2rem] border bg-card transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                isActive
+                  ? "border-primary/40 shadow-2xl ring-1 ring-primary/15"
+                  : "border-border/80 shadow-card cursor-pointer hover:opacity-95"
+              }`}
+            >
+              {/* Slide 1: Hassan Wali Portrait */}
+              {slide.id === "profile" && (
+                <div className="relative flex h-full flex-col justify-between bg-gradient-to-b from-primary/10 via-surface/70 to-card">
+                  {/* Top Badges */}
+                  <div className="relative z-20 flex items-center justify-between px-4 pt-4">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-background/90 px-2.5 py-1 text-[11px] font-bold text-foreground shadow-sm backdrop-blur-md">
+                      <Star className="size-3.5 fill-amber-500 text-amber-500" />
+                      5.0 Rating
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-background/90 px-2.5 py-1 text-[11px] font-semibold text-foreground shadow-sm backdrop-blur-md">
+                      <span className="size-2 rounded-full bg-emerald-500" />
+                      Available
+                    </span>
+                  </div>
+
+                  {/* Portrait */}
+                  <div className="relative flex-1 overflow-hidden">
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute top-4 left-1/2 -translate-x-1/2 size-44 rounded-full bg-primary/20 blur-2xl"
+                    />
+                    <img
+                      src={hassanHero}
+                      alt="Hassan Wali, full stack web developer"
+                      className="relative z-10 mx-auto h-full w-full object-contain object-bottom drop-shadow-xl [mask-image:linear-gradient(to_bottom,black_78%,transparent_98%)]"
+                      loading="eager"
+                      fetchPriority="high"
+                      width="460"
+                      height="460"
+                      decoding="async"
+                    />
+                  </div>
+
+                  {/* Bottom Caption Strip */}
+                  <div className="relative z-20 border-t border-border/60 bg-background/90 px-4 pt-3 pb-11 backdrop-blur-md">
+                    <p className="font-display text-sm font-bold text-foreground">Hassan Wali</p>
+                    <p className="text-[11px] text-muted-foreground">
+                      Full Stack Web &amp; App Developer • Chitral, PK
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Slide 2: E-Commerce Stores */}
+              {slide.id === "ecommerce" && (
+                <div className="flex h-full flex-col justify-between bg-card">
+                  <div className="relative h-48 overflow-hidden border-b border-border bg-surface">
+                    <img
+                      src={projectNexora}
+                      alt="Nexora Electronics E-commerce Store"
+                      className="h-full w-full object-cover object-top"
+                      loading="lazy"
+                      width="1088"
+                      height="608"
+                    />
+                    <span className="absolute top-3 left-3 rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground shadow">
+                      E-Commerce
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col justify-between p-5 pb-12">
+                    <div>
+                      <h3 className="font-display text-lg font-bold text-foreground">
+                        Online Stores That Sell
+                      </h3>
+                      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                        Built Nexora Electronics &amp; Kamran Cloth House with smooth cart, COD, online payments &amp; admin dashboard.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      <span className="rounded-md bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">COD &amp; Online Pay</span>
+                      <span className="rounded-md bg-secondary px-2 py-0.5 text-[10px] font-semibold text-foreground">Order Tracking</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Slide 3: Business Websites */}
+              {slide.id === "business" && (
+                <div className="flex h-full flex-col justify-between bg-card">
+                  <div className="relative h-48 overflow-hidden border-b border-border bg-surface">
+                    <img
+                      src={projectBannu}
+                      alt="Bannu Masala Business Website"
+                      className="h-full w-full object-cover object-top"
+                      loading="lazy"
+                      width="1088"
+                      height="608"
+                    />
+                    <span className="absolute top-3 left-3 rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground shadow">
+                      Business Sites
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col justify-between p-5 pb-12">
+                    <div>
+                      <h3 className="font-display text-lg font-bold text-foreground">
+                        Fast Business Websites
+                      </h3>
+                      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                        Clean, trustworthy websites like Bannu Masala &amp; Northlinks Broadband — mobile responsive and Google SEO ready.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      <span className="rounded-md bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">Local SEO</span>
+                      <span className="rounded-md bg-secondary px-2 py-0.5 text-[10px] font-semibold text-foreground">2–4 Days Delivery</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Slide 4: Mobile Apps & Custom Systems */}
+              {slide.id === "apps" && (
+                <div className="flex h-full flex-col justify-between bg-gradient-to-br from-primary/5 via-card to-surface p-5 pb-12">
+                  <div className="flex items-center justify-between">
+                    <span className="grid size-11 place-items-center rounded-2xl bg-primary text-primary-foreground shadow-glow">
+                      <Smartphone className="size-5" />
+                    </span>
+                    <span className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">
+                      iOS &amp; Android
+                    </span>
+                  </div>
+
+                  <div className="my-auto space-y-3">
+                    <h3 className="font-display text-xl font-bold text-foreground">
+                      Mobile Apps &amp; Custom Web Systems
+                    </h3>
+                    <p className="text-xs leading-relaxed text-muted-foreground">
+                      Cross-platform mobile apps, client portals, real-time dashboards, and scalable full-stack backends.
+                    </p>
+                    <div className="space-y-2 pt-1">
+                      {["Android & iOS Cross-Platform", "Custom Admin Dashboards", "React, Next.js & Node.js"].map((feat) => (
+                        <div key={feat} className="flex items-center gap-2 rounded-xl border border-border/70 bg-background/80 px-3 py-2 text-xs font-medium text-foreground">
+                          <CheckCircle2 className="size-3.5 shrink-0 text-primary" />
+                          <span>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Slide 5: Results & Zero-Risk Guarantee */}
+              {slide.id === "results" && (
+                <div className="flex h-full flex-col justify-between bg-gradient-to-br from-emerald-500/5 via-card to-primary/5 p-5 pb-12">
+                  <div className="flex items-center justify-between">
+                    <span className="grid size-11 place-items-center rounded-2xl bg-emerald-600 text-white shadow-sm">
+                      <ShieldCheck className="size-5" />
+                    </span>
+                    <div className="flex text-amber-500 text-xs">★★★★★</div>
+                  </div>
+
+                  <div className="my-auto space-y-3">
+                    <h3 className="font-display text-xl font-bold text-foreground">
+                      Zero-Risk &amp; Proven Results
+                    </h3>
+                    <div className="rounded-2xl border border-border/80 bg-background/90 p-3.5 shadow-sm">
+                      <p className="text-xs italic leading-relaxed text-foreground/90">
+                        "Hamara electronics store bohat khoobsurat aur fast banaya hai. Hassan bhai ka kaam 10/10 hai!"
+                      </p>
+                      <p className="mt-2 text-[11px] font-semibold text-primary">
+                        — Hassan Irfan &amp; Abubakar (Nexora)
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-xs font-semibold text-emerald-700">
+                      <Check className="size-4 shrink-0" />
+                      <span>100% Pay After Work on Landing Pages</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Active Card Footer Bar: Counter + Progress + Arrows */}
+              {isActive && (
+                <div className="absolute inset-x-0 bottom-0 z-30 flex items-center justify-between gap-3 border-t border-border/60 bg-background/95 px-4 py-2 backdrop-blur-md">
+                  <span className="font-mono text-[11px] font-semibold text-muted-foreground">
+                    0{active + 1} / 0{total}
+                  </span>
+                  <div className="h-1 flex-1 overflow-hidden rounded-full bg-secondary">
+                    <div
+                      className="h-full rounded-full bg-primary transition-all duration-300"
+                      style={{ width: `${((active + 1) / total) * 100}%` }}
+                    />
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        goPrev();
+                      }}
+                      aria-label="Previous slide"
+                      className="grid size-6 place-items-center rounded-full border border-border bg-card text-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                    >
+                      <ChevronLeft className="size-3.5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        goNext();
+                      }}
+                      aria-label="Next slide"
+                      className="grid size-6 place-items-center rounded-full border border-border bg-card text-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                    >
+                      <ChevronRight className="size-3.5" />
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Bottom Interactive Icon Dock */}
+      <div className="mt-5 flex justify-center">
+        <div className="inline-flex items-center gap-1 sm:gap-2 rounded-full border border-border/80 bg-card/90 p-1.5 shadow-card backdrop-blur-md">
+          {HERO_SLIDES.map((slide, i) => {
+            const Icon = slide.icon;
+            const isCurrent = i === active;
+            return (
+              <button
+                key={slide.id}
+                type="button"
+                onClick={() => setActive(i)}
+                aria-label={`Show ${slide.label} card`}
+                className={`flex items-center gap-1.5 rounded-full px-2.5 sm:px-3 py-1.5 text-[11px] font-semibold transition-all duration-300 ${
+                  isCurrent
+                    ? "bg-primary text-primary-foreground shadow-glow"
+                    : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                }`}
+              >
+                <Icon className="size-3.5 shrink-0" />
+                <span className={isCurrent ? "inline" : "hidden sm:inline"}>{slide.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Hero() {
   return (
     <section className="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28">
@@ -450,7 +793,7 @@ function Hero() {
         className="pointer-events-none absolute -top-40 left-1/2 h-[480px] w-[720px] -translate-x-1/2 rounded-full bg-accent-glow blur-[120px]"
       />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr]">
         <Reveal>
           <p className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium text-muted-foreground">
             <span className="size-2 rounded-full bg-primary shadow-glow" />
@@ -490,82 +833,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={150}>
-          <div className="relative mx-auto w-full max-w-sm sm:max-w-md">
-            {/* Ambient background glow */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -inset-4 rounded-[2.5rem] bg-gradient-to-b from-primary/25 via-primary/10 to-transparent blur-3xl opacity-80"
-            />
-
-            {/* Architectural backdrop card / pedestal container */}
-            <div
-              aria-hidden
-              className="absolute inset-x-2 sm:inset-x-4 bottom-0 top-12 rounded-[2.5rem] border border-border/80 bg-gradient-to-b from-primary/10 via-surface/60 to-surface/90 shadow-xl backdrop-blur-sm -z-0"
-            />
-
-            {/* Glowing spotlight behind head & shoulders */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 size-48 rounded-full bg-primary/20 blur-2xl"
-            />
-
-            {/* Floating Badge 1: Top-Right (5.0 Rating & Trust) */}
-            <div className="animate-float-slow absolute -top-3 right-0 sm:-right-4 z-20 flex items-center gap-2.5 rounded-2xl border border-border/80 bg-background/95 px-3.5 py-2.5 shadow-card backdrop-blur-md transition-transform hover:scale-105">
-              <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-amber-500/15 text-amber-500">
-                <Star className="size-4.5 fill-amber-500 text-amber-500" />
-              </div>
-              <div className="text-left">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-xs font-bold text-foreground">5.0 Rating</span>
-                  <span className="flex text-amber-500 text-[10px] leading-none">★★★★★</span>
-                </div>
-                <p className="text-[11px] font-medium text-muted-foreground">100% Client Satisfaction</p>
-              </div>
-            </div>
-
-            {/* Floating Badge 2: Bottom-Left (Fast Turnaround) */}
-            <div className="animate-float-delayed absolute bottom-8 -left-2 sm:-left-6 z-20 flex items-center gap-3 rounded-2xl border border-border/80 bg-background/95 px-3.5 py-2.5 shadow-card backdrop-blur-md transition-transform hover:scale-105">
-              <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-primary/15 text-primary">
-                <CheckCircle2 className="size-5" />
-              </div>
-              <div className="text-left">
-                <p className="text-xs font-bold tracking-tight text-foreground">Fast Turnaround</p>
-                <p className="text-[11px] font-medium text-muted-foreground">On-Time &amp; High Quality</p>
-              </div>
-            </div>
-
-            {/* Floating Badge 3: Bottom-Right (Stack & Expertise) */}
-            <div className="animate-float-slow absolute -bottom-3 right-2 sm:-right-2 z-20 flex items-center gap-2 rounded-xl border border-border/80 bg-background/95 px-3 py-1.5 shadow-card backdrop-blur-md">
-              <span className="relative flex size-2 shrink-0">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
-              </span>
-              <div className="flex items-center gap-1 text-[11px] font-semibold text-foreground">
-                <Sparkles className="size-3 text-primary" />
-                <span>Full Stack &amp; Mobile</span>
-              </div>
-            </div>
-
-            {/* Portrait Image with soft bottom dissolve mask */}
-            <div className="relative z-10 overflow-hidden pt-4 pb-1">
-              <img
-                src={hassanHero}
-                alt="Hassan Wali, full stack web developer"
-                className="relative z-10 mx-auto block max-h-[460px] w-full object-contain drop-shadow-2xl [mask-image:linear-gradient(to_bottom,black_75%,transparent_98%)]"
-                loading="eager"
-                fetchPriority="high"
-                width="460"
-                height="460"
-                decoding="async"
-              />
-
-              {/* Seamless gradient overlay to smoothly blend the bottom cut */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background via-background/70 to-transparent z-10"
-              />
-            </div>
-          </div>
+          <HeroCardDeck />
         </Reveal>
       </div>
     </section>
