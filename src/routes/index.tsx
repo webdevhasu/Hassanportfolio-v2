@@ -510,25 +510,25 @@ function HeroCardDeck() {
           let opacity = 0;
 
           if (offset === 0) {
-            transformStyle = "translateX(0%) scale(1) rotateY(0deg)";
+            transformStyle = "translate3d(0%, 0, 0) scale(1) rotateY(0deg)";
             zIndex = 30;
             opacity = 1;
           } else if (offset === -1) {
-            transformStyle = "translateX(-19%) scale(0.87) rotateY(7deg)";
+            transformStyle = "translate3d(-19%, 0, -40px) scale(0.87) rotateY(6deg)";
             zIndex = 20;
-            opacity = 0.85;
+            opacity = 0.82;
           } else if (offset === 1) {
-            transformStyle = "translateX(19%) scale(0.87) rotateY(-7deg)";
+            transformStyle = "translate3d(19%, 0, -40px) scale(0.87) rotateY(-6deg)";
             zIndex = 20;
-            opacity = 0.85;
+            opacity = 0.82;
           } else if (offset === -2) {
-            transformStyle = "translateX(-32%) scale(0.75) rotateY(12deg)";
+            transformStyle = "translate3d(-32%, 0, -80px) scale(0.75) rotateY(10deg)";
             zIndex = 10;
-            opacity = 0.55;
+            opacity = 0.5;
           } else {
-            transformStyle = "translateX(32%) scale(0.75) rotateY(-12deg)";
+            transformStyle = "translate3d(32%, 0, -80px) scale(0.75) rotateY(-10deg)";
             zIndex = 10;
-            opacity = 0.55;
+            opacity = 0.5;
           }
 
           return (
@@ -536,7 +536,7 @@ function HeroCardDeck() {
               key={slide.id}
               onClick={() => !isActive && setActive(i)}
               style={{ transform: transformStyle, zIndex, opacity }}
-              className={`absolute inset-x-4 sm:inset-x-6 top-0 bottom-0 overflow-hidden rounded-[2rem] border backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              className={`absolute inset-x-4 sm:inset-x-6 top-0 bottom-0 overflow-hidden rounded-[2rem] border backdrop-blur-md will-change-[transform,opacity] transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isActive
                   ? "border-white/70 bg-white/30 shadow-[0_24px_54px_-14px_rgba(30,58,138,0.26),inset_0_1px_1px_rgba(255,255,255,0.9)] ring-1 ring-white/40"
                   : "border-white/55 bg-white/20 shadow-[0_14px_34px_-12px_rgba(30,58,138,0.18),inset_0_1px_1px_rgba(255,255,255,0.7)] cursor-pointer hover:bg-white/30"
@@ -717,15 +717,18 @@ function HeroCardDeck() {
                 </div>
               )}
 
-              {/* Active Glass Card Footer Bar */}
-              {isActive && (
-                <div className="absolute inset-x-0 bottom-0 z-30 flex items-center justify-between gap-3 border-t border-white/55 bg-white/30 px-4 py-2 backdrop-blur-xl">
+              {/* Active Glass Card Footer Bar (always mounted for zero-pop fade) */}
+              <div
+                className={`absolute inset-x-0 bottom-0 z-30 flex items-center justify-between gap-3 border-t border-white/55 bg-white/30 px-4 py-2 backdrop-blur-md transition-opacity duration-500 ${
+                  isActive ? "opacity-100" : "pointer-events-none opacity-0"
+                }`}
+              >
                   <span className="font-mono text-[11px] font-semibold text-foreground/75">
                     0{active + 1} / 0{total}
                   </span>
                   <div className="h-1 flex-1 overflow-hidden rounded-full bg-primary/15">
                     <div
-                      className="h-full rounded-full bg-primary transition-all duration-300"
+                      className="h-full rounded-full bg-primary transition-[width] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                       style={{ width: `${((active + 1) / total) * 100}%` }}
                     />
                   </div>
@@ -754,7 +757,7 @@ function HeroCardDeck() {
                     </button>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           );
         })}
@@ -775,7 +778,7 @@ function HeroCardDeck() {
                 className="group flex flex-col items-center gap-1 focus:outline-none"
               >
                 <span
-                  className={`grid size-9 sm:size-10 place-items-center rounded-full border transition-all duration-300 ${
+                  className={`grid size-9 sm:size-10 place-items-center rounded-full border transition-[transform,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                     isCurrent
                       ? "scale-105 border-white/80 bg-primary/80 text-white backdrop-blur-md shadow-[0_0_20px_rgba(37,99,235,0.45)] ring-2 ring-white/70"
                       : "border-white/60 bg-white/25 text-foreground/80 backdrop-blur-md hover:bg-white/45 hover:text-primary"
